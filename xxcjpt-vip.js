@@ -24,6 +24,7 @@ try {
         obj.data.vip = 1;
         obj.data.is_vip = 1;
         obj.data.vip_status = 1;
+        obj.data.exp = false;
         obj.data.vip_expire_time = "2027-12-31 23:59:59";
         obj.data.vip_expire = "2027-12-31";
         obj.data.expire_time = "2027-12-31 23:59:59";
