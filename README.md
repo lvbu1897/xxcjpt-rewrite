@@ -11,7 +11,7 @@
 ## 使用方法（远程）
 
 1. QX → 设置 → 重写 → 规则资源 → +。
-2. 填入 `https://raw.githubusercontent.com/你的用户名/xxcjpt-rewrite/main/xxcjpt-vip.snippet`。
+2. 填入 `https://raw.githubusercontent.com/lvbu1897/xxcjpt-rewrite/main/xxcjpt-vip.snippet`。
 
 ## 加解密说明
 
