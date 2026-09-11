@@ -1,13 +1,12 @@
 // ==UserScript==
-// @ScriptName xxcjpt 会员解锁
+// @ScriptName xxcjpt 去会员限制+去广告
 // @Author lvbu1897
 // @UpdateTime 2026-09-11
-// @Function 修改 /java/user/my 与 /java/show/ 接口 VIP 状态、观看次数、完整视频权限
+// @Function 修改 /java/user/my 与 /java/show/ 接口, 解锁 VIP/完整视频/观看次数, 去广告
 // @Suitable 仅用于学习交流，请勿滥用
 // @ScriptURL https://raw.githubusercontent.com/lvbu1897/xxcjpt-rewrite/main/xxcjpt-vip.js
 // ==/UserScript==
 
 hostname = sixth.xxcjpt.com
 
-^https?://sixth\.xxcjpt\.com/java/user/my url script-response-body https://raw.githubusercontent.com/lvbu1897/xxcjpt-rewrite/main/xxcjpt-vip.js
-^https?://sixth\.xxcjpt\.com/java/show/ url script-response-body https://raw.githubusercontent.com/lvbu1897/xxcjpt-rewrite/main/xxcjpt-vip.js
+^https?://sixth\.xxcjpt\.com/java/(user/my|show) url script-response-body https://raw.githubusercontent.com/lvbu1897/xxcjpt-rewrite/main/xxcjpt-vip.js
