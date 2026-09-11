@@ -41,7 +41,7 @@ try {
     console.log("xxcjpt JSON解析成功, data是否存在: " + hasData);
 
     if (obj.data) {
-        console.log("xxcjpt 修改前 vip=" + obj.data.vip + " exp=" + obj.data.exp);
+        console.log("xxcjpt 修改前 vip=" + obj.data.vip + " exp=" + obj.data.exp + " fullvideo=" + obj.data.fullvideo + " today_left=" + obj.data.today_left);
         obj.data.vip = 1;
         obj.data.is_vip = 1;
         obj.data.vip_status = 1;
@@ -51,7 +51,10 @@ try {
         obj.data.expire_time = "2027-12-31 23:59:59";
         obj.data.expire = "2027-12-31";
         obj.data.expdate = "2027-12-31";
-        console.log("xxcjpt 修改后 vip=" + obj.data.vip + " exp=" + obj.data.exp);
+        // /java/show/ 接口特有：完整视频权限 + 观看次数
+        if (obj.data.fullvideo !== undefined) obj.data.fullvideo = true;
+        if (obj.data.today_max !== undefined) obj.data.today_left = obj.data.today_max;
+        console.log("xxcjpt 修改后 vip=" + obj.data.vip + " exp=" + obj.data.exp + " fullvideo=" + obj.data.fullvideo + " today_left=" + obj.data.today_left);
     }
 
     var newJson = JSON.stringify(obj);
