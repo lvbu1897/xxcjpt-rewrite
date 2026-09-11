@@ -25,17 +25,27 @@ function b64Encode(str) {
     return output;
 }
 
+// 非ASCII字符转 \uXXXX 转义，保持和原始格式一致
+function escapeUnicode(str) {
+    var result = '';
+    for (var i = 0; i < str.length; i++) {
+        var code = str.charCodeAt(i);
+        if (code > 127) {
+            result += '\\u' + ('0000' + code.toString(16)).slice(-4);
+        } else {
+            result += str.charAt(i);
+        }
+    }
+    return result;
+}
+
 var body = $response.body;
 
 try {
     console.log("xxcjpt 原始body长度: " + body.length);
 
     var reversed = body.split('').reverse().join('');
-    console.log("xxcjpt 反转后前40字符: " + reversed.substring(0, 40));
-
     var decoded = b64Decode(reversed);
-    console.log("xxcjpt 解码后前200字符: " + decoded.substring(0, 200));
-
     var obj = JSON.parse(decoded);
     var hasData = obj.data ? "是" : "否";
     console.log("xxcjpt JSON解析成功, data是否存在: " + hasData);
@@ -57,10 +67,9 @@ try {
         console.log("xxcjpt 修改后 vip=" + obj.data.vip + " exp=" + obj.data.exp + " fullvideo=" + obj.data.fullvideo + " today_left=" + obj.data.today_left);
     }
 
-    var newJson = JSON.stringify(obj);
-    console.log("xxcjpt 重新JSON长度: " + newJson.length);
+    // 重新编码：JSON.stringify -> 转义非ASCII -> Base64 -> 反转
+    var newJson = escapeUnicode(JSON.stringify(obj));
     var newB64 = b64Encode(newJson);
-    console.log("xxcjpt 重新Base64长度: " + newB64.length);
     var newBody = newB64.split('').reverse().join('');
     console.log("xxcjpt 最终body长度: " + newBody.length);
 
